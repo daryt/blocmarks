@@ -18,8 +18,9 @@
       <tr>
         <td><%= bookmark.name %></td>
         <td><%= bookmark.url %></td>
-        <td><%= bookmark.topics %></td>
-        <td><%= bookmark.user %></td>
+        <td><%= bookmark.topic_list %></td>
+        <td><%= bookmark.user.name %></td>
+        <td><%= bookmark.created_at %></td>
         <td><%= link_to 'Show', bookmark %></td>
         <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
         <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>

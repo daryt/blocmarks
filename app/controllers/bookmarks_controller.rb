@@ -4,7 +4,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.json
   def index
-    @bookmarks = params[:user_id] ? Bookmark.where(user_id: params[:user_id]) : Bookmark.all
+    @bookmarks = params[:user_id] ? Bookmark.order('created_at').where(user_id: params[:user_id]) : Bookmark.find(:all, :order => "created_at")
     # @bookmarks = Bookmark.all
   end
 
@@ -27,7 +27,7 @@ class BookmarksController < ApplicationController
   def create
 
     @bookmark = Bookmark.new(bookmark_params)
-    
+    @bookmark.user = current_user
 
     respond_to do |format|
       if @bookmark.save
