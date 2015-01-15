@@ -5,7 +5,10 @@ class BookmarksController < ApplicationController
   # GET /bookmarks.json
   def index
     @bookmarks = params[:user_id] ? Bookmark.order('created_at').where(user_id: params[:user_id]) : Bookmark.find(:all, :order => "created_at")
+    
+    # @bookmarks = Bookmark.tagged_with('test1')
     # @bookmarks = Bookmark.all
+    @tags = Bookmark.tag_counts_on(:topics)
   end
 
   # GET /bookmarks/1
@@ -62,6 +65,10 @@ class BookmarksController < ApplicationController
       format.html { redirect_to bookmarks_url }
       format.json { head :no_content }
     end
+  end
+
+  def tag_cloud
+    @tags = Bookmark.tag_counts_on(:topics)
   end
 
   private

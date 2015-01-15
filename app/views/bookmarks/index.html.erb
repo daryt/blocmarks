@@ -1,5 +1,7 @@
 <h1>Listing bookmarks</h1>
-
+<% tag_cloud(@tags, ['css1','css2','css3','css4']) do |tag, css_class| %>
+  <%= link_to tag.name, '#', :class => css_class %>
+<% end %>
 <table>
   <thead>
     <tr>

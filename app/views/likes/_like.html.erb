@@ -1,0 +1,7 @@
+<div class="like">
+  <% if like = current_user.liked(bookmark) %>
+  Liked
+  <% else %>
+    <%= link_to "Like", user_bookmark_likes_path(current_user.id, bookmark.id), method: :post %>
+  <% end %>
+</div>

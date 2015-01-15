@@ -2,7 +2,9 @@ Blockmarks::Application.routes.draw do
 
   resources :bookmarks
   resources :users do
-    resources :bookmarks
+    resources :bookmarks do
+      resources :likes, only: [:create, :destroy]
+    end
   end
 
   get "static/index"
