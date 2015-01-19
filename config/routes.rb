@@ -1,11 +1,15 @@
 Blockmarks::Application.routes.draw do
 
   resources :bookmarks
-  resources :users do
+      get 'bookmarks/topics/:tag', to: 'bookmarks#index', as: :tag
+      resources :users do
     resources :bookmarks do
       resources :likes, only: [:create, :destroy]
     end
-  end
+   end
+
+
+  
 
   get "static/index"
   devise_for :users
