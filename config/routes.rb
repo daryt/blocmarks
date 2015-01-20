@@ -10,7 +10,7 @@ get "static/index"
     end
    end
 
-
+post :incoming, to: 'incoming#create'
   
 
   

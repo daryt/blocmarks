@@ -41,6 +41,7 @@ end
 
 gem 'devise'
 gem 'acts-as-taggable-on', '~> 3.4'
+gem 'figaro', '1.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
