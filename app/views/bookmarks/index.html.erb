@@ -32,5 +32,38 @@
 </table>
 
 <br>
+<% if current_user and current_user.likes.size > 0 %>
+<h1>Liked bookmarks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Url</th>
+      <th>Topics</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.likes.each do |like| %>
+      <tr>
+        <td><%= like.bookmark.name %></td>
+        <td><%= like.bookmark.url %></td>
+        <td><%= like.bookmark.topic_list %></td>
+        <td><%= like.user.name %></td>
+        <td><%= like.bookmark.created_at %></td>
+        <td><%= link_to 'Show', like.bookmark %></td>
+        <td><%= link_to 'Edit', edit_bookmark_path(like.bookmark) %></td>
+        <td><%= link_to 'Destroy', like.bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<br>
 
 <%= link_to 'New Bookmark', new_bookmark_path %>
