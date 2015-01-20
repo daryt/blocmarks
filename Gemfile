@@ -9,7 +9,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-group :developerment do
+group :developement do
   gem 'sqlite3'
 end
 
