@@ -9,5 +9,7 @@ class User < ActiveRecord::Base
   def liked(bookmark)
     likes.where(bookmark_id: bookmark.id).first
   end
+
+  acts_as_tagger
   
 end
