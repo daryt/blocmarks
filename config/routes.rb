@@ -4,6 +4,7 @@ get "static/index"
   
   resources :bookmarks
       get 'bookmarks/topics/:tag', to: 'bookmarks#index', as: :tag
+      get 'users/:user_id/bookmarks/topics/:tag', to: 'bookmarks#index', as: :user_tag
       resources :users do
     resources :bookmarks do
       resources :likes, only: [:create, :destroy]

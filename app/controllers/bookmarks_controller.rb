@@ -4,10 +4,19 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.json
   def index
-    @bookmarks = params[:user_id] ? Bookmark.order('created_at DESC').where(user_id: params[:user_id]) : params[:tag] ? Bookmark.order('created_at').tagged_with(params[:tag]) : Bookmark.find(:all, :order => "created_at")
+    if params[:tag]
+      tag = Bookmark.order('created_at').tagged_with(params[:tag])
+    else
+      tag = Bookmark.find(:all, :order => "created_at")
+    end
+
+    @bookmarks = params[:user_id] ? Bookmark.order('created_at DESC').where(user_id: params[:user_id]) : tag
+
+
+    # ? Bookmark.order('created_at').tagged_with(params[:tag]) : Bookmark.find(:all, :order => "created_at")
     # @bookmarks = Bookmark.tagged_with('test1')
     # @bookmarks = Bookmark.all
-    @tags = Bookmark.tag_counts_on(:topics)
+    @tags = params[:user_id] ? User.find(params[:user_id]).bookmarks.tag_counts_on(:topics) : Bookmark.tag_counts_on(:topics)
   end
 
   # GET /bookmarks/1
