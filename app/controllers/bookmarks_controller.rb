@@ -5,9 +5,9 @@ class BookmarksController < ApplicationController
   # GET /bookmarks.json
   def index
     if params[:tag]
-      tag = Bookmark.order('created_at').tagged_with(params[:tag])
+      tag = Bookmark.order('created_at DESC').tagged_with(params[:tag])
     else
-      tag = Bookmark.find(:all, :order => "created_at")
+      tag = Bookmark.find(:all, :order => "created_at DESC")
     end
 
     @bookmarks = params[:user_id] ? Bookmark.order('created_at DESC').where(user_id: params[:user_id]) : tag
