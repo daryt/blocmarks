@@ -14,11 +14,11 @@ class IncomingController < ApplicationController
 
     tags = params['Subject'].split(',')
     data = params['stripped-text'].split(",").map(&:strip)
-    email = params['from'].strip
+    email = data[2]
    
     if User.find_by(:email => email)
       @bookmark = Bookmark.new({name: data[0], url: data[1]})
-      @bookmark.user = User.find_by(:email => email)
+      @bookmark.user = User.find_by(email: email)
       @bookmark.topic_list.add(tags)
       @bookmark.save
 

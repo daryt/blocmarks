@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
     likes.where(bookmark_id: bookmark.id).first
   end
 
+  def sorted_likes
+    bookmark_ids = likes.collect { |like| like.bookmark_id }
+    Bookmark.where('id IN (?)', bookmark_ids).order('created_at DESC')
+  end
+
   acts_as_tagger
   
 end

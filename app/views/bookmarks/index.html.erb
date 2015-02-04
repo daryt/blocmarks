@@ -50,16 +50,16 @@
   </thead>
 
   <tbody>
-    <% current_user.likes.each do |like| %>
+    <% current_user.sorted_likes.each do |bookmark| %>
       <tr>
-        <td><%= like.bookmark.name %></td>
-        <td><%= like.bookmark.url %></td>
-        <td><%= like.bookmark.topic_list %></td>
-        <td><%= like.bookmark.user.name %></td>
-        <td><%= like.bookmark.created_at %></td>
-        <td><%= link_to 'Show', like.bookmark %></td>
-        <td><%= link_to 'Edit', edit_bookmark_path(like.bookmark) %></td>
-        <td><%= link_to 'Destroy', like.bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= bookmark.name %></td>
+        <td><%= bookmark.url %></td>
+        <td><%= bookmark.topic_list %></td>
+        <td><%= bookmark.user.name %></td>
+        <td><%= bookmark.created_at %></td>
+        <td><%= link_to 'Show', bookmark %></td>
+        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
+        <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

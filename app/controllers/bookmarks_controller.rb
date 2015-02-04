@@ -68,10 +68,14 @@ class BookmarksController < ApplicationController
   # DELETE /bookmarks/1
   # DELETE /bookmarks/1.json
   def destroy
-    @bookmark.destroy
-    respond_to do |format|
-      format.html { redirect_to bookmarks_url }
-      format.json { head :no_content }
+    if current_user == @bookmark.user
+          @bookmark.destroy
+          respond_to do |format|
+              format.html { redirect_to bookmarks_url }
+              format.json { head :no_content }
+          end
+    else
+      redirect_to bookmarks_path, notice: 'You can not delete bookmarks that you do not own.'
     end
   end
 
